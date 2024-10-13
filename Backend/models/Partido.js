@@ -11,8 +11,6 @@ export default class Partido {
         this.#num = num
     }
 
-
-
     get num() { return this.#num }
     set num(val) { this.#num = val }
 

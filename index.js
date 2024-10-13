@@ -2,8 +2,8 @@ import express from "express";
 import autenticar from "./Frontend/security/autenticacao.js";
 import {verificarAutenticacao, logout} from "./Frontend/security/autenticacao.js";
 import session from "express-session";
-import Partido from "./Backend/models/Partido.js";
-import Candidato from "./Backend/models/Candidato.js";
+import rotaCandidato from "./Backend/routes/candidatoRota.js";
+import rotaPartido from "./Backend/routes/partidoRota.js";
 
 
 const app = express();
@@ -46,6 +46,9 @@ const backPort = 4000;
 const backHost = "0.0.0.0";
 
 backApp.use(express.json());
+
+backApp.use("/candidato", rotaCandidato)
+backApp.use("/partido", rotaPartido)
 
 backApp.listen(backPort, backHost, () => {
     console.log(`Backend rodando em http://${backHost}:${backPort}`);
