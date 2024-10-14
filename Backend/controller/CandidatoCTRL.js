@@ -10,7 +10,7 @@ export default class CandidatoCTRL {
             const num = dados.num
             if(nome && partido && num){
                 const candidato = new Candidato( num,  nome, partido)
-                candidato.gravar().then(() => {
+                candidato.incluir().then(() => {
                     res.status(200).json({
                         "status": true,
                         "message": "Candidato gravado com sucesso"

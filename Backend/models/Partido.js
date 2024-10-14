@@ -44,4 +44,13 @@ export default class Partido {
         num: ${this.#num}
         `
     }
+
+    toJSON() {
+        return {
+            num: this.#num,
+            nome: this.#nome,
+            sigla: this.#sigla  
+        }
+    }
+
 }

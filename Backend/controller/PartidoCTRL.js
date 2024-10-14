@@ -10,10 +10,10 @@ export default class PartidoCTRL {
             const num = dados.num
             if(nome && sigla && num){
                 const partido = new Partido( num,  nome, sigla)
-                partido.gravar().then(() => {
+                partido.incluir().then(() => {
                     res.status(200).json({
                         "status": true,
-                        "message": "Candidato gravado com sucesso"
+                        "message": "Partido gravado com sucesso"
                     })
                 }).catch((error) => {
                     res.status(500).json({
@@ -21,6 +21,12 @@ export default class PartidoCTRL {
                         "message": error
                     })
                 })  
+            }
+            else{
+                res.status(400).json({
+                    "status": false,
+                    "message": "Informe todos os dados"
+                })
             }
         }
         else{
@@ -41,7 +47,7 @@ export default class PartidoCTRL {
                 partido.alterar().then(() => {
                     res.status(200).json({
                         "status": true,
-                        "message": "Candidato alterado com sucesso"
+                        "message": "Partido alterado com sucesso"
                     })
                 }).catch((error) => {
                     res.status(500).json({
@@ -73,7 +79,7 @@ export default class PartidoCTRL {
                 partido.excluir().then(() => {
                     res.status(200).json({
                         "status": true,
-                        "message": "Candidato excluido com sucesso"
+                        "message": "Partido excluido com sucesso"
                     })
                 }).catch((error) => {
                     res.status(500).json({
@@ -85,7 +91,7 @@ export default class PartidoCTRL {
             else{
                 res.status(400).json({
                     "status": false,
-                    "message": "Informe o nome do candidato"
+                    "message": "Informe o nome do partido"
                 })
             }
         }
@@ -104,10 +110,10 @@ export default class PartidoCTRL {
         if(req.method == "GET"){
             
             const partido = new Partido()
-            partido.consultar(termo).then((candidatos) => {
+            partido.consultar(termo).then((partidos) => {
                 res.status(200).json({
                     "status": true,
-                    "message": candidatos
+                    "message": partidos
                 })
             }).catch((error) => {
                 res.status(500).json({

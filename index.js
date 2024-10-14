@@ -4,7 +4,7 @@ import {verificarAutenticacao, logout} from "./Frontend/security/autenticacao.js
 import session from "express-session";
 import rotaCandidato from "./Backend/routes/candidatoRota.js";
 import rotaPartido from "./Backend/routes/partidoRota.js";
-
+import cors from "cors";
 
 const app = express();
 const port = 3000;
@@ -45,12 +45,15 @@ const backApp = express();
 const backPort = 4000;
 const backHost = "0.0.0.0";
 
+backApp.use(cors({
+    origin: "*"
+}));
+
 backApp.use(express.json());
 
-backApp.use("/candidato", rotaCandidato)
-backApp.use("/partido", rotaPartido)
+backApp.use("/candidatos", rotaCandidato)
+backApp.use("/partidos", rotaPartido)
 
 backApp.listen(backPort, backHost, () => {
     console.log(`Backend rodando em http://${backHost}:${backPort}`);
 });
-

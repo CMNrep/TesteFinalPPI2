@@ -43,7 +43,7 @@ export default class CandidatoDAO {
             const conexao = await conectar()
             const sql = `UPDATE partidos SET
             p_num = ?,
-            p_sigla = ?,
+            p_sigla = ?
             WHERE p_nome = ?; 
             `
             const parametro = [

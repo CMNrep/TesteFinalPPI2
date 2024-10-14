@@ -35,10 +35,18 @@ export default class Candidato {
         return await canDAO.consultar(parametro)
     }
 
+    toJSON() {
+        return {
+            nome: this.#nome,
+            partido: this.#partido,
+            num: this.#num
+        }
+    }
 
     toString() { return `
         nome: ${this.#nome}
         partido: ${this.#partido}
         num: ${this.#num}
         ` }
+
 }

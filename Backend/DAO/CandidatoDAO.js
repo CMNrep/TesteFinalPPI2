@@ -42,7 +42,7 @@ export default class CandidatoDAO {
             const conexao = await conectar()
             const sql = `UPDATE candidatos SET
             can_num = ?,
-            can_partido = ?,
+            can_partido = ?
             WHERE can_nome = ?; 
             `
             const parametro = [
@@ -85,9 +85,9 @@ export default class CandidatoDAO {
         if(regs.length > 0){
             for (const reg of regs) {
                 const candidato = new Candidato(
+                    reg.can_num,
                     reg.can_nome, 
-                    reg.can_partido, 
-                    reg.can_num
+                    reg.can_partido
                 )
                 lista.push(candidato)
             }
